@@ -1,6 +1,8 @@
+import SortingSection from "../components/SortingSection";
 import ProductCard from "../components/ProductCard";
 import Image from "next/image";
 import { connection } from "next/server";
+
 
 
 export default async function Home() {
@@ -15,6 +17,7 @@ export default async function Home() {
 
   const priceUp = data.filter(product => product.change.dir === 'up');
   const priceDown = data.filter(product => product.change.dir === 'down');
+
 
 
   return (
@@ -56,38 +59,9 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      <h2 className="font-bold text-xl max-w-7xl container mx-auto">সব পণ্য</h2>
+      <SortingSection data={data}></SortingSection>
 
-      <section>
-        <div className='max-w-7xl mx-auto my-10 flex flex-col gap-2'>
-          <h2 className="font-bold text-xl">সব পণ্য</h2>
-          <div className="flex justify-between items-center ">
-            <p className="text-sm text-gray-500">মোট {data.length.toLocaleString('bn-BD')}টি পণ্য দেখানো হচ্ছে</p>
-            <div className="flex items-center gap-3">
-              <label htmlFor="sort" className="text-sm text-gray-500">
-                সাজান:
-              </label>
-
-              <select
-                id="sort"
-                className="border border-gray-200 rounded-lg px-3 py-2 text-sm
-               bg-white text-gray-700 outline-none
-               focus:ring-2 focus:ring-green-100
-               cursor-pointer"
-              >
-                <option value="default">ডিফল্ট</option>
-                <option value="price-low">দাম: কম থেকে বেশি</option>
-                <option value="price-high">দাম: বেশি থেকে কম</option>
-              </select>
-            </div>
-
-          </div>
-          <div className='grid grid-cols-3 gap-4 my-4'>
-            {data.map((product, i) =>
-              <ProductCard key={i} product={product} />
-            )}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

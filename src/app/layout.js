@@ -35,7 +35,9 @@ export default function RootLayout({ children }) {
         <Marquee></Marquee>
         
         
-        {children}
+        <main className="flex-1">
+          {children}
+        </main>
         
         <Footer/>
         </body>
