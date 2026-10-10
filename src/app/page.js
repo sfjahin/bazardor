@@ -1,4 +1,4 @@
-import ProductCard from "@/components/ProductCard";
+import ProductCard from "../components/ProductCard";
 import Image from "next/image";
 import { connection } from "next/server";
 
@@ -9,7 +9,7 @@ export default async function Home() {
     dateStyle: 'full',
   });
 
-  const res = await fetch('https://api.abcz.workers.dev/api/bazardor/products');
+  const res = await fetch('https://openapi.programming-hero.com/api/bazardor/products');
   const data = await res.json();
 
 
@@ -19,7 +19,7 @@ export default async function Home() {
 
   return (
     <div>
-      <section className='bg-white border-gray-200 border rounded-2xl max-w-7xl container mx-auto px-4 py-7 my-8'>
+      <section className='bg-white border-gray-200 border rounded-2xl max-w-7xl container mx-auto px-8 py-8 my-8'>
         <div className="flex justify-between items-center">
           <div className="flex flex-col gap-5">
             <div className="bg-[#E2F1E7] rounded-full px-4 py-2 text-green-700 text-sm w-fit">

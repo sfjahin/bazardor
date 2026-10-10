@@ -3,7 +3,7 @@ import React from 'react';
 
 const NavLinks = async() => {
 
-    const res = await fetch('https://api.abcz.workers.dev/api/bazardor/categories');
+    const res = await fetch('https://openapi.programming-hero.com/api/bazardor/categories');
     const data = await res.json();
     console.log(data);
     
