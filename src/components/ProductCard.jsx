@@ -1,0 +1,34 @@
+import Image from 'next/image';
+import React from 'react';
+
+const ProductCard = ({ product }) => {
+
+    const pct = product.change.pct;
+    const positivePct = pct*(-1);
+
+    return (
+        <div className='flex flex-col gap-4 rounded-2xl p-4 bg-white border border-gray-200 '>
+            <div className='flex gap-2'>
+                <div className='p-2 bg-[#F0F5F0] h-fit w-fit rounded-xl text-2xl'>
+                    {product.image}
+                </div>
+                <div>
+                    <h4 className='font-bold text-lg'>{product.nameBn}</h4>
+                    <p className='text-sm text-gray-500'>প্রতি কেজি</p>
+                </div>
+            </div>
+            <div className='flex flex-col'>
+                <p className='text-sm text-gray-500'>আজকের দাম</p>
+                <div className='flex justify-between items-center'>
+                    <p><span className='font-bold text-xl'>{product.today.toLocaleString('bn-BD')}</span> টাকা</p>
+                    <div className='bg-[#F0F5F0] px-2 rounded-xl flex gap-1'>
+                        <p className={`text-sm ${product.change.dir === 'up' ? 'text-red-600' : 'text-green-700'} font-bold`}>{product.change.dir === 'up' ? '↑' : '↓'} {pct > 0? pct.toLocaleString('bn-BD') : positivePct.toLocaleString('bn-BD')}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    );
+};
+
+export default ProductCard;
