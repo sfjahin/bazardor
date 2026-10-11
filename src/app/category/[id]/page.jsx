@@ -8,7 +8,6 @@ const CategoryPage = async ({ params }) => {
     
     const allProductRes = await fetch(`https://openapi.programming-hero.com/api/bazardor/products?category=${id}`);
     const allProductData = await allProductRes.json();
-    console.log(allProductData,'dgfsd');
 
 
 

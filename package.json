@@ -19,6 +19,7 @@
     "@types/node": "26.6.5",
     "@types/react": "19.3.0",
     "babel-plugin-react-compiler": "1.0.0",
+    "daisyui": "^5.7.47",
     "eslint": "^9",
     "eslint-config-next": "16.4.0",
     "tailwindcss": "^4"

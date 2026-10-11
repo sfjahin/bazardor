@@ -17,7 +17,7 @@ const NavDate = () => {
         setDate(currentDate);
     }, []);
 
-    return <div>{date || "Loading..."}</div>;
+    return <div className='text-xs text-gray-500'>{date || "Loading..."}</div>;
 };
 
 export default NavDate;
