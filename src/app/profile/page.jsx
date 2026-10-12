@@ -1,7 +1,7 @@
 'use client'
+
 import React, { useState } from 'react';
 import { authClient } from "../../lib/auth-client";
-import Link from 'next/link';
 import toast from 'react-hot-toast';
 
 const ProfilePage = () => {
@@ -46,7 +46,11 @@ const ProfilePage = () => {
                         <p className='text-gray-500'>{user?.email ?? ""}</p>
                     </div>
                 </div>
-                <Link onClick={handleSignOut} href={'/'} className='text-red-700 text-md px-4 py-2 border border-red-700 rounded-md hover:bg-red-700 hover:text-white font-bold'>↩সাইন আউট</Link>
+                <button
+                    type="button"
+                    onClick={handleSignOut}
+                    className="text-red-700 px-4 py-2 border border-red-700 rounded-md"
+                >↩ সাইন আউট</button>
             </div>
             <div className='flex flex-col gap-2 justify-start items-center p-6 bg-white rounded-2xl border border-gray-200'>
                 <h1 className='font-bold text-xl w-full '>নাম হালনাগাদ করুন</h1>
@@ -65,7 +69,7 @@ const ProfilePage = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className={`btn btn-primary sm:w-fit mt-4 text-white px-4 py-2 rounded-md hover:bg-green-800 font-bold shadow-md shadow-green-200 ${loading ? 'bg-gray-500' : 'bg-green-700' }`}
+                            className={`btn btn-primary sm:w-fit mt-4 text-white px-4 py-2 rounded-md hover:bg-green-800 font-bold shadow-md shadow-green-200 ${loading ? 'bg-gray-500' : 'bg-green-700'}`}
                         >
                             {loading ? "অপেক্ষা করুন..." : "নাম হালনাগাদ করুন"}
                         </button>

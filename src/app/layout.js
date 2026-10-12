@@ -4,6 +4,7 @@ import Nav from "../components/Nav";
 import Marquee from "../components/Marquee";
 import Footer from "../components/Footer";
 import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
 
 
 const geistSans = Geist({
@@ -30,7 +31,7 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col text-gray-800 bg-[#F0F5F0]">
 
-
+        <Suspense fallback="{...}">
         <Nav></Nav>
         <Marquee></Marquee>
         
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
         <main className="flex-1">
           {children}
         </main>
+        </Suspense>
         
         <Footer/>
         <Toaster></Toaster>
