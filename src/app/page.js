@@ -2,6 +2,7 @@ import SortingSection from "../components/SortingSection";
 import ProductCard from "../components/ProductCard";
 import Image from "next/image";
 import { connection } from "next/server";
+import Link from "next/link";
 
 export const instant = false;
 
@@ -22,7 +23,7 @@ export default async function Home() {
 
   return (
     <div>
-      <section className='bg-white border-gray-200 border rounded-2xl max-w-7xl container mx-auto px-8 py-8 my-8'>
+      <section className='scroll-smooth bg-white border-gray-200 border rounded-2xl max-w-7xl container mx-auto px-8 py-8 my-8'>
         <div className="flex justify-between items-center">
           <div className="flex flex-col gap-5">
             <div className="bg-[#E2F1E7] rounded-full px-4 py-2 text-green-700 text-sm w-fit">
@@ -30,9 +31,9 @@ export default async function Home() {
             </div>
             <h1 className="text-4xl font-bold">আজকের বাজারের দাম এক <br></br>নজরে</h1>
             <p className="text-gray-500">চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়,<br></br> সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।</p>
-            <button className="bg-green-700 text-white px-4 py-2 rounded-xl hover:bg-green-800 w-fit font-bold shadow-md shadow-green-200">
+            <Link href="#all-products" className="bg-green-700 text-white px-4 py-2 rounded-xl hover:bg-green-800 w-fit font-bold shadow-md shadow-green-200">
               সব পণ্য দেখুন
-            </button>
+            </Link>
           </div>
           <Image src="/bazar-hero.png" alt="Placeholder" width={400} height={400} />
         </div>
@@ -59,8 +60,10 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <h2 className="font-bold text-xl max-w-7xl container mx-auto">সব পণ্য</h2>
-      <SortingSection data={data}></SortingSection>
+      <section id="all-products">
+        <h2 className="font-bold text-xl max-w-7xl container mx-auto" >সব পণ্য</h2>
+        <SortingSection data={data}></SortingSection>
+      </section>
 
     </div>
   );

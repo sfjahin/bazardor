@@ -13,6 +13,7 @@ const SignInPage = () => {
     const [loading, setLoading] = useState(false);
     const [socialLoading, setSocialLoading] = useState(false);
 
+
     const onSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
@@ -144,7 +145,7 @@ const SignInPage = () => {
                             className="btn bg-white text-gray-800 flex-1"
                         >
                             <FaGithub />
-                            GitHub দিয়ে চালিয়ে যান
+                            {socialLoading ? 'অপেক্ষা করুন...' : 'Github দিয়ে চালিয়ে যান'}
                         </button>
                     </div>
 

@@ -1,32 +1,71 @@
-import SortingSection from '../../../components/SortingSection';
 import React from 'react';
+import { notFound } from 'next/navigation';
+import SortingSection from '../../../components/SortingSection';
 
 const CategoryPage = async ({ params }) => {
     const { id } = await params;
-    const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/categories/${id}`);
-    if (!res.ok) throw new Error("Failed to fetch categories");
-    const data = await res.json();
 
-    const allProductRes = await fetch(`https://openapi.programming-hero.com/api/bazardor/products?category=${id}`);
-    if (!res.ok) throw new Error("Failed to fetch all products");
-    const allProductData = await allProductRes.json();
+    const [categoryRes, productsRes] = await Promise.all([
+        fetch(
+            `https://openapi.programming-hero.com/api/bazardor/categories/${encodeURIComponent(id)}`,
+            {
+                next: { revalidate: 3600 },
+            }
+        ),
+        fetch(
+            `https://openapi.programming-hero.com/api/bazardor/products?category=${encodeURIComponent(id)}`,
+            {
+                next: { revalidate: 3600 },
+            }
+        ),
+    ]);
 
+    if (categoryRes.status === 404) notFound();
 
+    if (!categoryRes.ok) {
+        throw new Error('Failed to fetch category');
+    }
 
+    if (!productsRes.ok) {
+        throw new Error('Failed to fetch category products');
+    }
+
+    const categoryResult = await categoryRes.json();
+    const productsResult = await productsRes.json();
+
+    // Supports APIs returning either an array directly or { data: [...] }.
+    const data = categoryResult?.data ?? categoryResult;
+    const allProductData = productsResult?.data ?? productsResult;
+
+    if (!data || !data.nameBn) {
+        notFound();
+    }
+
+    const products = Array.isArray(allProductData)
+        ? allProductData
+        : [];
 
     return (
-        <div>
-            <div className='flex gap-4 rounded-2xl p-4 bg-white border border-gray-200 max-w-7xl mx-auto my-8'>
+        <main>
+            <section className="flex gap-4 rounded-2xl p-4 bg-white border border-gray-200 max-w-7xl mx-auto my-8">
                 <div>
-                    <div className='text-5xl'>{data.icon}</div>
+                    <div className="text-5xl">{data.icon}</div>
                 </div>
+
                 <div>
-                    <h1 className='text-2xl font-bold'>{data.nameBn}</h1>
-                    <p>{allProductData.length.toLocaleString('bn-BD')}টি পণ্যের আজকের দাম ও পরিবর্তন</p>
+                    <h1 className="text-2xl font-bold">
+                        {data.nameBn}
+                    </h1>
+
+                    <p>
+                        {products.length.toLocaleString('bn-BD')}
+                        টি পণ্যের আজকের দাম ও পরিবর্তন
+                    </p>
                 </div>
-            </div>
-            <SortingSection data={allProductData}></SortingSection>
-        </div>
+            </section>
+
+            <SortingSection data={products} />
+        </main>
     );
 };
 
