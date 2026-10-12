@@ -15,6 +15,7 @@ const page = async ({ params }) => {
 
     const { id } = await params;
     const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${id}`);
+    if (!res.ok) throw new Error("Failed to fetch product");
     const data = await res.json();
 
 
@@ -42,12 +43,12 @@ const page = async ({ params }) => {
                     <h2>আজকের দাম</h2>
                     <h1 className='text-3xl font-bold text-black'>{data.today.toLocaleString('bn-BD')}</h1>
                     <h2>টাকা / {unitBn[data.unit] || data.unit}</h2>
-                    <p className='text-green-700 font-bold'>{data.change.dir === 'up' ? '↑' : '↓'} {Math.abs(data.change.pct).toLocaleString('bn-BD')}%</p>
+                    <p className='text-green-700 font-bold'>{data.change.dir === 'up' ? '▲' : '▼'} {Math.abs(data.change.pct).toLocaleString('bn-BD')}%</p>
                 </div>
             </div>
             <div className='rounded-2xl p-6 bg-white border border-gray-200 max-w-7xl mx-auto mb-8 flex flex-col gap-5'>
                 <div><h1 className='text-xl font-bold'>দামের সারসংক্ষেপ</h1></div>
-                <div className='grid grid-cols-3 gap-3'>
+                <div className='grid grid-cols-3 gap-4'>
                     <div className='p-4 border border-gray-200 rounded-xl text-sm text-gray-500'>
                         <p>সর্বনিম্ন দাম</p>
                         <span className='text-xl font-bold text-green-700'>{Math.min(...data.markets.map(price => price.min)).toLocaleString('bn-BD')} <span className='text-sm font-light'>টাকা</span></span>
@@ -85,7 +86,7 @@ const page = async ({ params }) => {
                 </div>
             </div>
             <div className='max-w-7xl mx-auto mb-16'>
-                <Link href={`/category/${data.category}`} className='py-2 px-4 hover:bg-gray-300 rounded-md font-bold text-md'>{data.categoryIcon} সব {data.categoryNameBn}</Link>
+                <Link href={`/category/${data.category}`} className='py-2 px-3 hover:bg-gray-300 rounded-md font-bold text-md'>{data.categoryIcon} সব {data.categoryNameBn}</Link>
             </div>
         </div>
     );

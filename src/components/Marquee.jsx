@@ -13,7 +13,7 @@ const Marquee = async() => {
             <MarqueeText direction="right" duration={10} pauseOnHover={true}>
                 {data.map((product, i) => (
                     <div key={i} className="text-black px-2 py-2     border-r-gray-200 border-r text-sm">
-                        {product.categoryIcon} {product.nameBn} {product.today.toLocaleString('bn-BD')} টাকা/কেজি  <span className={`font-bold ${product.change.dir === 'up' ? 'text-red-600' : 'text-green-700'}`}>{product.change.dir === 'up' ? '↑' : '↓'} {product.change.pct.toLocaleString('bn-BD')}%</span>
+                        {product.categoryIcon} {product.nameBn} {product.today.toLocaleString('bn-BD')} টাকা/কেজি  <span className={`font-bold ${product.change.dir === 'up' ? 'text-red-600' : 'text-green-700'}`}>{product.change.dir === 'up' ? '▲' : '▼'} {product.change.pct.toLocaleString('bn-BD')}%</span>
                     </div>
                 ))}
             </MarqueeText>

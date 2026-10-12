@@ -3,6 +3,7 @@ import React from 'react';
 import NavLinks from './NavLinks';
 import NavDate from './NavDate';
 import Link from 'next/link';
+import UserInfo from './UserInfo';
 
 const Nav = () => {
 
@@ -18,10 +19,7 @@ const Nav = () => {
                                 <NavDate></NavDate>
                             </div>
                         </div></Link>
-                    <div className="flex items-center gap-2">
-                        <button className="text-black px-4 py-2 rounded-xl hover:bg-gray-300 font-bold">সাইন ইন</button>
-                        <button className="bg-green-700 text-white px-4 py-2 rounded-xl hover:bg-green-800 w-fit font-bold shadow-md shadow-green-200">সাইন আপ</button>
-                    </div>
+                    <UserInfo></UserInfo>
                 </div>
             </div>
             <NavLinks></NavLinks>

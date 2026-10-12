@@ -3,7 +3,7 @@ import ProductCard from "../components/ProductCard";
 import Image from "next/image";
 import { connection } from "next/server";
 
-
+export const instant = false;
 
 export default async function Home() {
   await connection();
@@ -40,7 +40,7 @@ export default async function Home() {
 
       <section>
         <div className='max-w-7xl mx-auto my-10'>
-          <h2 className="font-bold text-xl"><span className="text-red-600 text-2xl">↑</span> আজ দাম বেড়েছে</h2>
+          <h2 className="font-bold text-xl"><span className="text-red-600 text-2xl">▲</span> আজ দাম বেড়েছে</h2>
           <div className='grid grid-cols-3 gap-4 my-4'>
             {priceUp.sort((a, b) => b.change.pct - a.change.pct).slice(0, 6).map((product) => (
               <ProductCard key={product.id} product={product} />
@@ -51,7 +51,7 @@ export default async function Home() {
 
       <section>
         <div className='max-w-7xl mx-auto my-10'>
-          <h2 className="font-bold text-xl"><span className="text-green-700 text-2xl">↓</span> আজ দাম কমেছে</h2>
+          <h2 className="font-bold text-xl"><span className="text-green-700 text-2xl">▼</span> আজ দাম কমেছে</h2>
           <div className='grid grid-cols-3 gap-4 my-4'>
             {priceDown.sort((a, b) => a.change.pct - b.change.pct).slice(0, 6).map((product) => (
               <ProductCard key={product.id} product={product} />

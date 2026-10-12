@@ -33,7 +33,7 @@ const ProductCard = ({ product }) => {
                     <div className='flex justify-between items-center'>
                         <p><span className='font-bold text-xl'>{product.today.toLocaleString('bn-BD')}</span> টাকা</p>
                         <div className='bg-[#F0F5F0] px-2 rounded-xl flex gap-1'>
-                            <p className={`text-sm ${product.change.dir === 'up' ? 'text-red-600' : 'text-green-700'} font-bold`}>{product.change.dir === 'up' ? '↑' : '↓'} {pct > 0 ? pct.toLocaleString('bn-BD') : positivePct.toLocaleString('bn-BD')}%</p>
+                            <p className={`text-sm ${product.change.dir === 'up' ? 'text-red-600' : 'text-green-700'} font-bold`}>{product.change.dir === 'up' ? '▲' : '▼'} {pct > 0 ? pct.toLocaleString('bn-BD') : positivePct.toLocaleString('bn-BD')}%</p>
                         </div>
                     </div>
                 </div>

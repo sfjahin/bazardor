@@ -4,10 +4,13 @@ import React from 'react';
 const CategoryPage = async ({ params }) => {
     const { id } = await params;
     const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/categories/${id}`);
+    if (!res.ok) throw new Error("Failed to fetch categories");
     const data = await res.json();
-    
+
     const allProductRes = await fetch(`https://openapi.programming-hero.com/api/bazardor/products?category=${id}`);
+    if (!res.ok) throw new Error("Failed to fetch all products");
     const allProductData = await allProductRes.json();
+
 
 
 

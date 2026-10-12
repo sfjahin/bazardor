@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import React from 'react';
 
-const NavLinks = async() => {
+const NavLinks = async () => {
 
     const res = await fetch('https://openapi.programming-hero.com/api/bazardor/categories');
+    if (!res.ok) throw new Error("Failed to fetch products");
     const data = await res.json();
-    
+
 
     return (
         <div>
