@@ -49,7 +49,7 @@ const ProfilePage = () => {
                 <button
                     type="button"
                     onClick={handleSignOut}
-                    className="text-red-700 px-4 py-2 border border-red-700 rounded-md"
+                    className={`text-red-700 px-4 py-2 border border-red-700 hover:bg-red-700 hover:text-white rounded-md`}
                 >↩ সাইন আউট</button>
             </div>
             <div className='flex flex-col gap-2 justify-start items-center p-6 bg-white rounded-2xl border border-gray-200'>
